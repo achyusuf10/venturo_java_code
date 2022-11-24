@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:venturo_java_code/configs/routes/app_routes.dart';
 
 import '../../../../configs/localizations/localization.dart';
 import '../../../../utils/services/local_db_services.dart';
@@ -28,7 +29,7 @@ class SplashController extends GetxController {
     /// Mendapatkan user dan token dari local DB service
     var user = await LocalDBServices.getUser();
     var token = await LocalDBServices.getToken();
-    Get.offAllNamed('/login');
+    Get.offAllNamed(AppRoutes.loginView);
 
     // /// Jika ada sesi login
     // if (user != null && token != null) {

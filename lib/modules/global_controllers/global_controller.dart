@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:uni_links/uni_links.dart';
 
 import '../../configs/routes/app_routes.dart';
-import '../../shared/widgets/network_error_view.dart';
+import '../../shared/widgets/network_error_dialog.dart';
 import '../../utils/services/local_db_services.dart';
 
 class GlobalController extends GetxController {
@@ -44,18 +44,24 @@ class GlobalController extends GetxController {
 
         /// Jika koneksi internet berhasil
         internetStatus.value = true;
+        if (Get.currentRoute == AppRoutes.networkErrorView) {
+          Get.back();
+        }
         break;
       case ConnectivityResult.wifi:
 
         /// Jika koneksi internet berhasil
         internetStatus.value = true;
+        if (Get.currentRoute == AppRoutes.networkErrorView) {
+          Get.back();
+        }
         break;
       default:
 
         /// Jika koneksi internet gagal
         internetStatus.value = false;
         if (Get.currentRoute != AppRoutes.splashView) {
-          showAlert();
+          Get.toNamed(AppRoutes.networkErrorView);
         }
         break;
     }
@@ -66,7 +72,7 @@ class GlobalController extends GetxController {
     await Get.defaultDialog(
       title: '',
       titleStyle: const TextStyle(fontSize: 0),
-      content: const NetworkErrorView(),
+      content: const NetworkErrorDialog(),
     );
   }
 

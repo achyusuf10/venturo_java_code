@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:venturo_java_code/modules/features/dashboard/controllers/dashboard_binding.dart';
+import 'package:venturo_java_code/modules/features/dashboard/view/dashboard_view.dart';
+import 'package:venturo_java_code/shared/widgets/network_error_view.dart';
 
 import '../../modules/features/login/controllers/login_binding.dart';
 import '../../modules/features/login/view/ui/login_view.dart';
@@ -21,6 +24,19 @@ class AppPages {
         name: AppRoutes.loginView,
         page: () => LoginView(),
         binding: LoginBinding(),
+      ),
+
+      /// Network Error
+      GetPage(
+        name: AppRoutes.networkErrorView,
+        page: () => const NetworkErrorView(),
+      ),
+
+      /// Dashboard
+      GetPage(
+        name: AppRoutes.dashboardView,
+        page: () => const DashboardView(),
+        binding: DashboardBinding(),
       ),
     ];
   }
