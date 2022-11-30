@@ -16,7 +16,7 @@ class SplashController extends GetxController {
     await Future.delayed(const Duration(seconds: 1));
 
     /// Mendapatkan bahasa saat ini
-    var language = await LocalDBServices.getLanguage();
+    var language = LocalDBServices.getLanguage();
     if (language != null) {
       Localization.changeLocale(language);
     }
@@ -27,17 +27,16 @@ class SplashController extends GetxController {
     }
 
     /// Mendapatkan user dan token dari local DB service
-    var user = await LocalDBServices.getUser();
-    var token = await LocalDBServices.getToken();
-    Get.offAllNamed(AppRoutes.loginView);
+    var user = LocalDBServices.getUser();
+    var token = LocalDBServices.getToken();
 
-    // /// Jika ada sesi login
-    // if (user != null && token != null) {
-    //   /// Ke halaman utama
-    //   await Get.offAllNamed('/dashboard');
-    // } else {
-    //   /// Jika tidak ada sesi ke halaman login
-    //   Get.offAllNamed('/login');
-    // }
+    /// Jika ada sesi login
+    if (user != null && token != null) {
+      /// Ke halaman utama
+      await Get.offAllNamed(AppRoutes.dashboardView);
+    } else {
+      /// Jika tidak ada sesi ke halaman login
+      Get.offAllNamed(AppRoutes.loginView);
+    }
   }
 }

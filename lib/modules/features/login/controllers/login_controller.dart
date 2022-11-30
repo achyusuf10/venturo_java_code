@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:venturo_java_code/configs/routes/app_routes.dart';
 import 'package:venturo_java_code/shared/customs/success_snack_bar.dart';
 
 import '../../../../shared/customs/error_snack_bar.dart';
 import '../../../../utils/services/local_db_services.dart';
-import '../../../models/user_res.dart';
 import '../repositories/login_repository.dart';
 
 class LoginController extends GetxController {
@@ -13,46 +13,41 @@ class LoginController extends GetxController {
   /// Login dengan email dan kata sandi
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     /// Memanggil API repository
-    UserRes userRes = await LoginRepository.getUser(email, password);
+    var loginRes = await LoginRepository.getUser(email, password);
 
-    switch (userRes.statusCode) {
-      case 200:
+    loginRes.fold((l) {
+      switch (l.statusCode) {
+        case 422:
 
-        /// Mengatur token dan user
-        await LocalDBServices.setUser(userRes.user!);
-        await LocalDBServices.setToken(userRes.token!);
-        Get.showSnackbar(SuccessSnackBar(
-          title: 'Success!'.tr,
-          message: 'Success Login With Email Password',
-        ));
+          /// Tampilkan snackbar jika username atau password salah
+          Get.showSnackbar(ErrorSnackBar(
+            title: 'Something went wrong'.tr,
+            message: 'Email or password is incorrect'.tr,
+          ));
+          break;
+        case 204:
 
-        /// Pergi ke halaman dashboard
-        //Get.offAllNamed('/dashboard');
-        break;
-      case 422:
-
-        /// Tampilkan snackbar jika username atau password salah
-        Get.showSnackbar(ErrorSnackBar(
-          title: 'Something went wrong'.tr,
-          message: 'Email or password is incorrect'.tr,
-        ));
-        break;
-      case 204:
-
-        /// Tampilkan snackbar jika username atau password salah
-        Get.showSnackbar(ErrorSnackBar(
-          title: 'Something went wrong'.tr,
-          message: 'Email or password is incorrect'.tr,
-        ));
-        break;
-      default:
-
-        /// Tampilkan snackbar error tidak diketahui
-        Get.showSnackbar(ErrorSnackBar(
-          title: 'Something went wrong'.tr,
-          message: userRes.message ?? 'Unknown error'.tr,
-        ));
-    }
+          /// Tampilkan snackbar jika username atau password salah
+          Get.showSnackbar(ErrorSnackBar(
+            title: 'Something went wrong'.tr,
+            message: 'Email or password is incorrect'.tr,
+          ));
+          break;
+        default:
+          Get.showSnackbar(ErrorSnackBar(
+            title: 'Something went wrong'.tr,
+            message: 'Unknown error'.tr,
+          ));
+      }
+    }, (r) async {
+      LocalDBServices.setUser(r['user']);
+      LocalDBServices.setToken(r['token']);
+      Get.toNamed(AppRoutes.dashboardView);
+      Get.showSnackbar(SuccessSnackBar(
+        title: 'Success!'.tr,
+        message: 'Success Login With Email Password',
+      ));
+    });
   }
 
   Future<void> loginWithGoogle() async {
@@ -69,27 +64,41 @@ class LoginController extends GetxController {
     if (account == null) return;
 
     /// Memanggil API repository
-    UserRes userRes = await LoginRepository.getUserFromGoogle(
+    var loginRes = await LoginRepository.getUserFromGoogle(
         account.displayName ?? '-', account.email);
 
-    if (userRes.statusCode == 200) {
-      /// Mengatur token dan user
-      await LocalDBServices.setUser(userRes.user!);
-      await LocalDBServices.setToken(userRes.token!);
+    loginRes.fold((l) {
+      switch (l.statusCode) {
+        case 422:
 
-      /// Pergi ke halaman dashboard
-      //Get.offAllNamed('/dashboard');
+          /// Tampilkan snackbar jika username atau password salah
+          Get.showSnackbar(ErrorSnackBar(
+            title: 'Something went wrong'.tr,
+            message: 'Email or password is incorrect'.tr,
+          ));
+          break;
+        case 204:
 
+          /// Tampilkan snackbar jika username atau password salah
+          Get.showSnackbar(ErrorSnackBar(
+            title: 'Something went wrong'.tr,
+            message: 'Email or password is incorrect'.tr,
+          ));
+          break;
+        default:
+          Get.showSnackbar(ErrorSnackBar(
+            title: 'Something went wrong'.tr,
+            message: 'Unknown error'.tr,
+          ));
+      }
+    }, (r) async {
+      LocalDBServices.setUser(r['user']);
+      LocalDBServices.setToken(r['token']);
+      Get.toNamed(AppRoutes.dashboardView);
       Get.showSnackbar(SuccessSnackBar(
         title: 'Success!'.tr,
         message: 'Success Login With Google',
       ));
-    } else {
-      /// Tampilkan snackbar error tidak diketahui
-      Get.showSnackbar(ErrorSnackBar(
-        title: 'Something went wrong'.tr,
-        message: 'Unknown error'.tr,
-      ));
-    }
+    });
   }
 }

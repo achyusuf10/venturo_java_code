@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 extension DateExtension on DateTime {
   /// Static object untuk format tanggal dan tanggal waktu
   static final DateFormat _dateTimeFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
-  static final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
+  static final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
 
   /// Ke dalam format tanggal
   String toDateString() => _dateFormat.format(this);

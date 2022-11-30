@@ -20,15 +20,28 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  int get id_user => throw _privateConstructorUsedError;
+  @HiveField(0)
+  @JsonKey(name: 'id_user')
+  int get idUser => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get email => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get nama => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: tglFromJson, toJson: tglToJson)
-  DateTime? get tgl_lahir => throw _privateConstructorUsedError;
+  @HiveField(3)
+  @JsonKey(
+      fromJson: SettingJson.tglFromJson,
+      toJson: SettingJson.tglToJson,
+      name: 'tgl_lahir')
+  DateTime? get tglLahir => throw _privateConstructorUsedError;
+  @HiveField(4)
   String? get alamat => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get telepon => throw _privateConstructorUsedError;
+  @HiveField(6)
   String? get ktp => throw _privateConstructorUsedError;
+  @HiveField(7)
   String get pin => throw _privateConstructorUsedError;
+  @HiveField(8)
   String? get foto => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,15 +55,26 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {int id_user,
-      String email,
-      String nama,
-      @JsonKey(fromJson: tglFromJson, toJson: tglToJson) DateTime? tgl_lahir,
-      String? alamat,
-      String? telepon,
-      String? ktp,
-      String pin,
-      String? foto});
+      {@HiveField(0)
+      @JsonKey(name: 'id_user')
+          int idUser,
+      @HiveField(1)
+          String email,
+      @HiveField(2)
+          String nama,
+      @HiveField(3)
+      @JsonKey(fromJson: SettingJson.tglFromJson, toJson: SettingJson.tglToJson, name: 'tgl_lahir')
+          DateTime? tglLahir,
+      @HiveField(4)
+          String? alamat,
+      @HiveField(5)
+          String? telepon,
+      @HiveField(6)
+          String? ktp,
+      @HiveField(7)
+          String pin,
+      @HiveField(8)
+          String? foto});
 }
 
 /// @nodoc
@@ -66,10 +90,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id_user = null,
+    Object? idUser = null,
     Object? email = null,
     Object? nama = null,
-    Object? tgl_lahir = freezed,
+    Object? tglLahir = freezed,
     Object? alamat = freezed,
     Object? telepon = freezed,
     Object? ktp = freezed,
@@ -77,9 +101,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? foto = freezed,
   }) {
     return _then(_value.copyWith(
-      id_user: null == id_user
-          ? _value.id_user
-          : id_user // ignore: cast_nullable_to_non_nullable
+      idUser: null == idUser
+          ? _value.idUser
+          : idUser // ignore: cast_nullable_to_non_nullable
               as int,
       email: null == email
           ? _value.email
@@ -89,9 +113,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
-      tgl_lahir: freezed == tgl_lahir
-          ? _value.tgl_lahir
-          : tgl_lahir // ignore: cast_nullable_to_non_nullable
+      tglLahir: freezed == tglLahir
+          ? _value.tglLahir
+          : tglLahir // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       alamat: freezed == alamat
           ? _value.alamat
@@ -124,15 +148,26 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id_user,
-      String email,
-      String nama,
-      @JsonKey(fromJson: tglFromJson, toJson: tglToJson) DateTime? tgl_lahir,
-      String? alamat,
-      String? telepon,
-      String? ktp,
-      String pin,
-      String? foto});
+      {@HiveField(0)
+      @JsonKey(name: 'id_user')
+          int idUser,
+      @HiveField(1)
+          String email,
+      @HiveField(2)
+          String nama,
+      @HiveField(3)
+      @JsonKey(fromJson: SettingJson.tglFromJson, toJson: SettingJson.tglToJson, name: 'tgl_lahir')
+          DateTime? tglLahir,
+      @HiveField(4)
+          String? alamat,
+      @HiveField(5)
+          String? telepon,
+      @HiveField(6)
+          String? ktp,
+      @HiveField(7)
+          String pin,
+      @HiveField(8)
+          String? foto});
 }
 
 /// @nodoc
@@ -144,10 +179,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id_user = null,
+    Object? idUser = null,
     Object? email = null,
     Object? nama = null,
-    Object? tgl_lahir = freezed,
+    Object? tglLahir = freezed,
     Object? alamat = freezed,
     Object? telepon = freezed,
     Object? ktp = freezed,
@@ -155,9 +190,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? foto = freezed,
   }) {
     return _then(_$_User(
-      id_user: null == id_user
-          ? _value.id_user
-          : id_user // ignore: cast_nullable_to_non_nullable
+      idUser: null == idUser
+          ? _value.idUser
+          : idUser // ignore: cast_nullable_to_non_nullable
               as int,
       email: null == email
           ? _value.email
@@ -167,9 +202,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
-      tgl_lahir: freezed == tgl_lahir
-          ? _value.tgl_lahir
-          : tgl_lahir // ignore: cast_nullable_to_non_nullable
+      tglLahir: freezed == tglLahir
+          ? _value.tglLahir
+          : tglLahir // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       alamat: freezed == alamat
           ? _value.alamat
@@ -197,43 +232,72 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User implements _User {
+@HiveType(typeId: 1, adapterName: 'UserAdapter')
+class _$_User extends _User {
   _$_User(
-      {required this.id_user,
-      required this.email,
-      required this.nama,
-      @JsonKey(fromJson: tglFromJson, toJson: tglToJson) this.tgl_lahir,
-      required this.alamat,
-      required this.telepon,
-      required this.ktp,
-      required this.pin,
-      required this.foto});
+      {@HiveField(0)
+      @JsonKey(name: 'id_user')
+          this.idUser = 0,
+      @HiveField(1)
+          this.email = '',
+      @HiveField(2)
+          this.nama = '',
+      @HiveField(3)
+      @JsonKey(fromJson: SettingJson.tglFromJson, toJson: SettingJson.tglToJson, name: 'tgl_lahir')
+          this.tglLahir,
+      @HiveField(4)
+          this.alamat,
+      @HiveField(5)
+          this.telepon,
+      @HiveField(6)
+          this.ktp,
+      @HiveField(7)
+          this.pin = '',
+      @HiveField(8)
+          this.foto})
+      : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
-  final int id_user;
+  @HiveField(0)
+  @JsonKey(name: 'id_user')
+  final int idUser;
   @override
+  @JsonKey()
+  @HiveField(1)
   final String email;
   @override
+  @JsonKey()
+  @HiveField(2)
   final String nama;
   @override
-  @JsonKey(fromJson: tglFromJson, toJson: tglToJson)
-  final DateTime? tgl_lahir;
+  @HiveField(3)
+  @JsonKey(
+      fromJson: SettingJson.tglFromJson,
+      toJson: SettingJson.tglToJson,
+      name: 'tgl_lahir')
+  final DateTime? tglLahir;
   @override
+  @HiveField(4)
   final String? alamat;
   @override
+  @HiveField(5)
   final String? telepon;
   @override
+  @HiveField(6)
   final String? ktp;
   @override
+  @JsonKey()
+  @HiveField(7)
   final String pin;
   @override
+  @HiveField(8)
   final String? foto;
 
   @override
   String toString() {
-    return 'User(id_user: $id_user, email: $email, nama: $nama, tgl_lahir: $tgl_lahir, alamat: $alamat, telepon: $telepon, ktp: $ktp, pin: $pin, foto: $foto)';
+    return 'User(idUser: $idUser, email: $email, nama: $nama, tglLahir: $tglLahir, alamat: $alamat, telepon: $telepon, ktp: $ktp, pin: $pin, foto: $foto)';
   }
 
   @override
@@ -241,11 +305,11 @@ class _$_User implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_User &&
-            (identical(other.id_user, id_user) || other.id_user == id_user) &&
+            (identical(other.idUser, idUser) || other.idUser == idUser) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.nama, nama) || other.nama == nama) &&
-            (identical(other.tgl_lahir, tgl_lahir) ||
-                other.tgl_lahir == tgl_lahir) &&
+            (identical(other.tglLahir, tglLahir) ||
+                other.tglLahir == tglLahir) &&
             (identical(other.alamat, alamat) || other.alamat == alamat) &&
             (identical(other.telepon, telepon) || other.telepon == telepon) &&
             (identical(other.ktp, ktp) || other.ktp == ktp) &&
@@ -255,7 +319,7 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id_user, email, nama, tgl_lahir,
+  int get hashCode => Object.hash(runtimeType, idUser, email, nama, tglLahir,
       alamat, telepon, ktp, pin, foto);
 
   @JsonKey(ignore: true)
@@ -272,39 +336,63 @@ class _$_User implements _User {
   }
 }
 
-abstract class _User implements User {
+abstract class _User extends User {
   factory _User(
-      {required final int id_user,
-      required final String email,
-      required final String nama,
-      @JsonKey(fromJson: tglFromJson, toJson: tglToJson)
-          final DateTime? tgl_lahir,
-      required final String? alamat,
-      required final String? telepon,
-      required final String? ktp,
-      required final String pin,
-      required final String? foto}) = _$_User;
+      {@HiveField(0)
+      @JsonKey(name: 'id_user')
+          final int idUser,
+      @HiveField(1)
+          final String email,
+      @HiveField(2)
+          final String nama,
+      @HiveField(3)
+      @JsonKey(fromJson: SettingJson.tglFromJson, toJson: SettingJson.tglToJson, name: 'tgl_lahir')
+          final DateTime? tglLahir,
+      @HiveField(4)
+          final String? alamat,
+      @HiveField(5)
+          final String? telepon,
+      @HiveField(6)
+          final String? ktp,
+      @HiveField(7)
+          final String pin,
+      @HiveField(8)
+          final String? foto}) = _$_User;
+  _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  int get id_user;
+  @HiveField(0)
+  @JsonKey(name: 'id_user')
+  int get idUser;
   @override
+  @HiveField(1)
   String get email;
   @override
+  @HiveField(2)
   String get nama;
   @override
-  @JsonKey(fromJson: tglFromJson, toJson: tglToJson)
-  DateTime? get tgl_lahir;
+  @HiveField(3)
+  @JsonKey(
+      fromJson: SettingJson.tglFromJson,
+      toJson: SettingJson.tglToJson,
+      name: 'tgl_lahir')
+  DateTime? get tglLahir;
   @override
+  @HiveField(4)
   String? get alamat;
   @override
+  @HiveField(5)
   String? get telepon;
   @override
+  @HiveField(6)
   String? get ktp;
   @override
+  @HiveField(7)
   String get pin;
   @override
+  @HiveField(8)
   String? get foto;
   @override
   @JsonKey(ignore: true)

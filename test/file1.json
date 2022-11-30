@@ -1,0 +1,51 @@
+{
+    "status_code": 200,
+    "data": {
+        "listData": [
+            {
+                "id_order": 363,
+                "no_struk": "070/KWT/06/2022",
+                "nama": "Fauzi Fakboi Banget",
+                "total_bayar": 14000,
+                "tanggal": "2022-06-23",
+                "status": 4,
+                "menu": [
+                    {
+                        "id_menu": 2,
+                        "kategori": "makanan",
+                        "topping": "",
+                        "nama": "Chicken Slam ",
+                        "foto": "https://i.ibb.co/R9kJtny/1637916829.png",
+                        "jumlah": 1,
+                        "harga": 14000,
+                        "total": 14000,
+                        "catatan": ""
+                    }
+                ]
+            },
+            {
+                "id_order": 362,
+                "no_struk": "069/KWT/06/2022",
+                "nama": "Fauzi Fakboi Banget",
+                "total_bayar": 28000,
+                "tanggal": "2022-06-23",
+                "status": 4,
+                "menu": [
+                    {
+                        "id_menu": 2,
+                        "kategori": "makanan",
+                        "topping": "",
+                        "nama": "Chicken Slam",
+                        "foto": "https://i.ibb.co/R9kJtny/1637916829.png",
+                        "jumlah": 2,
+                        "harga": 14000,
+                        "total": 28000,
+                        "catatan": ""
+                    }
+                ]
+            }
+        ],
+        "totalPrice": 42000,
+        "totalOrder": 2
+    }
+}

@@ -84,8 +84,8 @@ class GlobalController extends GetxController {
   void processUniLinks(Uri? uri) async {
     if (uri != null && uri.queryParameters['id_promo'] != null) {
       /// Mendapatkan user dan token dari local DB service
-      var user = await LocalDBServices.getUser();
-      var token = await LocalDBServices.getToken();
+      var user = LocalDBServices.getUser();
+      var token = LocalDBServices.getToken();
 
       if (user != null && token != null) {
         /// Navigasi ke detail promo jika sudah login

@@ -16,7 +16,7 @@ class ApiServices {
     };
 
     if (token != null) {
-      headers['Authorization'] = token;
+      headers['token'] = token;
     }
     if (authorization != null) {
       headers['Authorization'] = authorization;

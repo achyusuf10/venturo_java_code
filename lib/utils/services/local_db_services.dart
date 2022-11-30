@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
 
 import '../../modules/models/user.dart';
 
@@ -9,62 +7,58 @@ class LocalDBServices {
   /// Memastikan class ini tidak bisa diinstansiasi
   LocalDBServices._();
 
+  static Box<dynamic> _getBox() {
+    return Hive.box('box');
+  }
+
   /// Menyimpan data user ke shared preferences
-  static Future<void> setUser(User user) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('user', json.encode(user.toJson()));
+  static void setUser(User user) {
+    _getBox().put('user', user);
   }
 
   /// Mendapatkan data user dari shared preferences
-  static Future<User?> getUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? user = prefs.getString('user');
-    if (user == null) {
-      return null;
-    } else {
-      return User.fromJson(json.decode(user));
-    }
+  static User? getUser() {
+    User? user = _getBox().get('user');
+    if (user == null) return null;
+    return user;
   }
 
   /// Menghapus data user dari shared preferences
-  static Future<void> clearUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('user');
+  static void clearUser() {
+    _getBox().delete('user');
   }
 
   /// Menyimpan data token ke shared preferences
-  static Future<void> setToken(String token) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', token);
+  static void setToken(String token) {
+    _getBox().put('token', token);
   }
 
   /// Mendapatkan data token dari shared preferences
-  static Future<String?> getToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('token');
+  static String? getToken() {
+    String? token = _getBox().get('token');
+    if (token == null || token.isEmpty) return null;
+    return token;
   }
 
   /// Menghapus data token dari shared preferences
-  static Future<void> clearToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('token');
+  static void clearToken() {
+    _getBox().delete('token');
   }
 
   /// Menyimpan data bahasa ke shared preferences
-  static Future<void> setLanguage(String language) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('language', language);
+  static void setLanguage(String language) {
+    _getBox().put('language', language);
   }
 
   /// Mendapatkan data bahasa dari shared preferences
-  static Future<String?> getLanguage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('language');
+  static String? getLanguage() {
+    String? language = _getBox().get('language');
+    if (language == null || language.isEmpty) return null;
+    return language;
   }
 
   /// Menghapus data bahasa dari shared preferences
-  static Future<void> clearLanguage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('language');
+  static void clearLanguage() {
+    _getBox().delete('language');
   }
 }
